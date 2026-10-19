@@ -1,12 +1,26 @@
-#include <bits/stdc++.h>
-using namespace std;
+class Solution {
+public:
+    int mostFrequentElement(vector<int>& nums) {
+        unordered_map <int, int> hash;
+        for (int num: nums){
+            hash[num]++;
+        }
+        int max_occuring = 0;
+        int max_occuring_num = 10000;
+        for(auto i: hash){
+            if(i.second >= max_occuring){
+                if(i.second == max_occuring){
+                    if(i.first < max_occuring_num){
+                        max_occuring = i.second;
+                        max_occuring_num = i.first;
+                    }
+                }else{
+                    max_occuring = i.second;
+                    max_occuring_num = i.first;
 
-int main(){
-    int nums[5] = [1, 2 ,3, 3, 5];
-    int counts[100000] = [0];
-    for(int num: nums){
-        counts[num] ++;
+                }
+            }
+        }
+        return max_occuring_num;
     }
-
-    cout << max(counts);
-}
+};
